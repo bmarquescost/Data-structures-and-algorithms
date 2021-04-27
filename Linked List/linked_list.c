@@ -97,6 +97,7 @@ void list_pop(LIST *l, int index) {
 
         previous_node = current_node;
         current_node = current_node->next;
+        ++current_index;
     }
 }
 
