@@ -1,18 +1,21 @@
-#include "linked_list.h"
+#include "double_linked_list.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-    LIST *new_list = list_create();
+    DLL *new_list = dll_create();
     
     for(int i = 0; i < 10; ++i) 
-        list_push(new_list, element_create(i));
+        dll_push(new_list, element_create(i));
 
-    list_print(new_list);
-    list_invert(new_list);
-    list_print(new_list);
+    dll_print(new_list);
 
-    list_delete(&new_list);    
+    printf("Deleting\n");
+    dll_pop(new_list, 4);
+
+    dll_print(new_list);
+
+    dll_delete(&new_list);    
 
     return 0;
 }
