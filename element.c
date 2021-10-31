@@ -8,6 +8,11 @@ ELEMENT *element_create(int value) {
     return new_element;
 }
 
+int element_get_value(ELEMENT *e) {
+    if (e == NULL) return ERROR;
+    return e->value;
+}
+
 void element_delete(ELEMENT **e) {
     if(e == NULL) 
         return;
