@@ -1,23 +1,25 @@
-#include "stack.h"
+#include "queue.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-    STACK *new_stack = stack_create();
+    QUEUE *new_queue = queue_create();
     
     for(int i = 0; i < 10; ++i) 
-        stack_push(new_stack, element_create(i));
-    stack_print(new_stack);
+        queue_enqueue(new_queue, element_create(i));
+    
+    printf("DEBUG\n");
+    queue_print(new_queue);
 
     printf("Deleting\n");
-    free(stack_pop(new_stack));
+    free(queue_dequeue(new_queue));
+    queue_print(new_queue);
 
-    stack_print(new_stack);
+    for (int i = 0; i < 5; ++i) {
+        free(queue_dequeue(new_queue));
+        queue_print(new_queue);
+    }
 
-    printf("Tentando inverter\n");
-    stack_revert_recursively(new_stack);
-    stack_print(new_stack);
-
-    stack_delete(&new_stack);    
+    queue_delete(&new_queue);    
     return 0;
 }
