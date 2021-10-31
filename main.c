@@ -1,36 +1,36 @@
-#include "binary_search_tree.h"
+#include "avl.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-    BST *bst = bst_create();
+    AVL *avl = avl_create();
     
-    bst_insert(bst, element_create(10), ITERATIVE);
-    bst_insert(bst, element_create(5), ITERATIVE);
-    bst_insert(bst, element_create(15), ITERATIVE);
-    bst_insert(bst, element_create(2), ITERATIVE);
-    bst_insert(bst, element_create(1), ITERATIVE);
-    bst_insert(bst, element_create(3), ITERATIVE);
-    bst_insert(bst, element_create(7), ITERATIVE);
-    bst_insert(bst, element_create(12), ITERATIVE);
-    bst_insert(bst, element_create(20), ITERATIVE);
+    avl_insert(avl, element_create(10));
+    avl_insert(avl, element_create(5));
+    avl_insert(avl, element_create(15));
+    avl_insert(avl, element_create(2));
+    avl_insert(avl, element_create(1));
+    avl_insert(avl, element_create(3));
+    avl_insert(avl, element_create(7));
+    avl_insert(avl, element_create(12));
+    avl_insert(avl, element_create(20));
 
     
     printf("DEBUG\n");
-    bst_print(bst, PRE_ORDER);
-    bst_print(bst, IN_ORDER);
-    bst_print(bst, POST_ORDER);
+    avl_print(avl, PRE_ORDER);
+    avl_print(avl, IN_ORDER);
+    avl_print(avl, POST_ORDER);
 
     printf("Deleting\n");
-    bst_delete(bst, 5);
-    bst_print(bst, PRE_ORDER);
+    avl_remove(avl, 5);
+    avl_print(avl, PRE_ORDER);
     
-    bst_delete(bst, 3);
-    bst_print(bst, PRE_ORDER);
+    avl_remove(avl, 3);
+    avl_print(avl, PRE_ORDER);
     
-    bst_delete(bst, 10);
-    bst_print(bst, PRE_ORDER);
+    avl_remove(avl, 10);
+    avl_print(avl, PRE_ORDER);
 
-    bst_destroy(&bst);    
+    avl_destroy(&avl);    
     return 0;
 }
