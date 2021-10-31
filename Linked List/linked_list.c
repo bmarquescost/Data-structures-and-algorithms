@@ -108,11 +108,41 @@ ELEMENT *list_search(LIST *l, int key) {
     NODE *current_node = l->head;
     while(current_node != NULL) {
         if(current_node->element->value == key) 
-            break;
+            return current_node->element;
         current_node = current_node->next;
     }
 
-    return current_node->element;
+    return NULL;
+}
+
+bool list_remove_key(LIST *l, int key) {
+    if(l == NULL)
+        return FALSE;
+    
+    NODE *previous_node = NULL;
+    NODE *current_node = l->head;
+    while(current_node != NULL) {
+        if(key == element_get_value(current_node->element)) {
+            if(previous_node != NULL) 
+                previous_node->next = current_node->next;
+            
+            else 
+                l->head = current_node->next;
+
+            if(current_node == l->tail) 
+                l->tail = previous_node;
+            
+            element_delete(&current_node->element);
+            free(current_node);
+            --(l->n_nodes);
+            return TRUE;
+        }
+
+        previous_node = current_node;
+        current_node = current_node->next;
+    }
+
+    return FALSE;
 }
 
 void list_invert(LIST *l) {

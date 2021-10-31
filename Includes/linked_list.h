@@ -11,6 +11,7 @@ void list_delete(LIST **);
 void list_push(LIST *, ELEMENT *);
 void list_pop(LIST *, int);
 ELEMENT *list_search(LIST *, int);
+bool list_remove_key(LIST *, int);
 void list_print(LIST *); 
 void list_invert(LIST *);
 

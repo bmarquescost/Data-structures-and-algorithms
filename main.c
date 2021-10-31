@@ -1,36 +1,25 @@
-#include "avl.h"
+#include "hash.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-    AVL *avl = avl_create();
-    
-    avl_insert(avl, element_create(10));
-    avl_insert(avl, element_create(5));
-    avl_insert(avl, element_create(15));
-    avl_insert(avl, element_create(2));
-    avl_insert(avl, element_create(1));
-    avl_insert(avl, element_create(3));
-    avl_insert(avl, element_create(7));
-    avl_insert(avl, element_create(12));
-    avl_insert(avl, element_create(20));
+    HASH *hm = hash_create();
 
-    
-    printf("DEBUG\n");
-    avl_print(avl, PRE_ORDER);
-    avl_print(avl, IN_ORDER);
-    avl_print(avl, POST_ORDER);
+    for (int i = 0; i < 50; ++i) {
+        hash_insert(hm, i);
+        hash_insert(hm, i * i);
+    }
 
-    printf("Deleting\n");
-    avl_remove(avl, 5);
-    avl_print(avl, PRE_ORDER);
-    
-    avl_remove(avl, 3);
-    avl_print(avl, PRE_ORDER);
-    
-    avl_remove(avl, 10);
-    avl_print(avl, PRE_ORDER);
+    hash_display(hm);
 
-    avl_destroy(&avl);    
+    printf("Removing 0: %d\n", hash_remove(hm, 0));
+    printf("Removing 10: %d\n", hash_remove(hm, 10));
+    printf("Removing 10000: %d\n", hash_remove(hm, 10000));
+    printf("Removing 230: %d\n", hash_remove(hm, 230));
+    printf("Removing 390: %d\n", hash_remove(hm, 390));
+    printf("Removing 4: %d\n", hash_remove(hm, 4));
+    printf("Removing 2: %d\n", hash_remove(hm, 2));
+
+    hash_destroy(&hm);
     return 0;
 }
